@@ -59,16 +59,17 @@ public class Calculator {
         }
 
         this.input = format(sum);
-
     }
 
     private String format(Double input) {
         String value;
+
         if (input % 1 == 0) {
             value = String.valueOf(input.intValue());
         } else {
             value = input.toString();
         }
+
         return value;
     }
 
