@@ -5,7 +5,7 @@ public class Calculator {
 
     private final String BLANK_VALUE = "";
     private final String EMPTY_VALUE = "Vide";
-    private final String UNDEFINED_VALUE = "Non défini";
+    private final String UNDEFINED_VALUE = "Non défini"; // Division par zéro
 
     private String input;
     private String history;
@@ -15,19 +15,18 @@ public class Calculator {
         this.history = BLANK_VALUE;
     }
 
-    private Calculator clear() {
+    private void clear() {
         this.input = BLANK_VALUE;
         this.history = EMPTY_VALUE;
-        return this;
     }
 
-    private Calculator compute() {
+    private void compute() {
         if (this.input.contains("/0")) {
             this.input = UNDEFINED_VALUE;
-            return this;
         }
 
         String operator = "+";
+
         List<Double> numbers = new ArrayList<>();
         StringBuilder number = new StringBuilder();
 
@@ -55,20 +54,22 @@ public class Calculator {
         }
 
         double sum = 0;
-        for (double d : numbers) sum += d;
+        for (double d : numbers) {
+            sum += d;
+        }
+
         this.input = format(sum);
 
-        return this;
     }
 
-    private String format(Double value) {
-        double result;
-        if (value % 1 == 0.0) {
-            result = value.intValue();
+    private String format(Double input) {
+        String value;
+        if (input % 1 == 0) {
+            value = String.valueOf(input.intValue());
         } else {
-            result = value;
+            value = input.toString();
         }
-        return Double.toString(result);
+        return value;
     }
 
     public String getHistory() {
@@ -93,6 +94,6 @@ public class Calculator {
 
     @Override
     public String toString() {
-        return "Historique: " + this.history + ", Résultat : " + this.input;
+        return "Historique: " + this.history + ", Résultat: " + this.input;
     }
 }
