@@ -15,7 +15,7 @@ public class Main {
         calc.insert("/");
         calc.insert("4");
 
-        calc.update(EAction.EQUAL);
+        calc.update(EAction.EQUAL); // 92.75
         System.out.println("Historique: " + calc.getHistory());
         System.out.println("Résultat: " + calc.getResult());
         System.out.println(calc);
